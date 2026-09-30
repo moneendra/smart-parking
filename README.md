@@ -228,7 +228,23 @@ data/data.json               persisted slots + event history (auto-created)
 tools/node/                  portable Node.js runtime (no system Node needed)
 ```
 
-## 9. Publishing this project to GitHub
+## 9. Deploying the dashboard to Vercel
+
+`vercel.json` publishes `public/` as the static site output, so the dashboard
+opens at `/`. This only deploys the browser files. The live dashboard still
+needs the Node.js server, MQTT broker, REST API and Socket.IO service running
+on a persistent host; Vercel's static deployment does not run `server.js`.
+Until the dashboard is configured to connect to that separately hosted
+service, its connection indicator will remain offline and no live slots will
+appear.
+
+For the complete live system, deploy `server.js` and its MQTT broker to a
+Node.js host that supports the app's persistent MQTT connection, then configure
+the dashboard and hardware to use that service's public address. Do not expose
+the current unauthenticated embedded MQTT broker directly to the public
+internet.
+
+## 10. Publishing this project to GitHub
 
 The repository is already initialized and committed. To put it on GitHub:
 
